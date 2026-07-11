@@ -1,0 +1,116 @@
+/* Old-reddit cosplay: Verdana at 10pt, the sacred #cee3f8 banner, link blue
+   #369, metadata gray. The joke is the fidelity. */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font: 10pt Verdana, Arial, Helvetica, sans-serif;
+  background: #fff;
+  color: #000;
+}
+a { color: #369; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---- header band ---- */
+.masthead {
+  background: #cee3f8;
+  border-bottom: 1px solid #5f99cf;
+  padding: 4px 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.masthead .snoo { font-size: 18pt; align-self: center; }
+.masthead .subname { font-size: 16pt; font-weight: bold; color: #222; }
+.masthead .tagline { color: #555; }
+
+/* ---- layout ---- */
+.page { display: flex; gap: 16px; padding: 10px; align-items: flex-start; }
+.main { flex: 1; min-width: 0; }
+.side {
+  width: 300px;
+  flex-shrink: 0;
+  border: 1px solid #cee3f8;
+  font-size: 9pt;
+}
+.side h2 {
+  margin: 0;
+  background: #cee3f8;
+  color: #369;
+  font-size: 10pt;
+  padding: 4px 8px;
+}
+.side .box { padding: 8px; }
+.side ol { margin: 4px 0 4px 20px; padding: 0; }
+.side li { margin-bottom: 4px; }
+.subscribe {
+  display: inline-block;
+  background: #eff7ff;
+  border: 1px solid #5f99cf;
+  color: #369;
+  font-weight: bold;
+  padding: 2px 12px;
+  cursor: pointer;
+}
+.subcount { color: #808080; margin-top: 6px; }
+@media (max-width: 700px) {
+  .page { flex-direction: column; }
+  .side { width: 100%; }
+}
+
+/* ---- catalog: link list ---- */
+.post { display: flex; gap: 8px; padding: 6px 0; }
+.votes { width: 40px; text-align: center; color: #c6c6c6; flex-shrink: 0; }
+.votes .arrow { cursor: pointer; font-size: 11pt; line-height: 1; }
+.votes .arrow.up:hover, .votes .arrow.up.voted { color: #ff8b60; }
+.votes .score { color: #808080; font-weight: bold; font-size: 9pt; }
+.post .entry { min-width: 0; }
+.post .title { font-size: 12pt; }
+.post .flair {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  font-size: 8pt;
+  padding: 0 3px;
+  color: #555;
+  vertical-align: middle;
+}
+.post .meta, .post .buttons { color: #808080; font-size: 8pt; }
+.post .buttons a { color: #808080; font-weight: bold; margin-right: 6px; }
+.post .blurb { color: #333; font-size: 9pt; margin: 2px 0; }
+
+/* ---- story page ---- */
+.story-title { font-size: 14pt; margin: 4px 0; }
+.story-meta { color: #808080; font-size: 8pt; margin-bottom: 8px; }
+.usertext {
+  border: 1px solid #cee3f8;
+  background: #fafafa;
+  padding: 8px 12px;
+  max-width: 60em;
+}
+.usertext p { margin: 8px 0; padding: 2px 4px; }
+.usertext p.pwincess { color: #a03c78; font-style: italic; }
+.usertext p.now { background: #fff5c2; outline: 1px solid #e8d780; }
+
+/* ---- player bar ---- */
+.player {
+  position: sticky;
+  bottom: 0;
+  background: #cee3f8;
+  border-top: 1px solid #5f99cf;
+  padding: 6px 10px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+}
+.player button {
+  font: bold 10pt Verdana, sans-serif;
+  background: #eff7ff;
+  border: 1px solid #5f99cf;
+  color: #369;
+  padding: 4px 14px;
+  cursor: pointer;
+}
+.player button:disabled { color: #999; border-color: #bbb; cursor: default; }
+.player .status { color: #444; font-size: 8pt; }

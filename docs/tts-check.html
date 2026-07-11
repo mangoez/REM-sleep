@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>REM Sleep narrator self check</title>
+<style>
+  body { font-family: monospace; margin: 2rem; background: #111; color: #eee; }
+  button { font-size: 1.1rem; padding: .5rem 1rem; margin-right: .5rem; }
+  #script p { margin: .3rem 0; padding: .2rem .4rem; }
+  #script p.now { background: #374; }
+  #log { margin-top: 1rem; white-space: pre-wrap; color: #8f8; }
+</style>
+</head>
+<body>
+<h1>Narrator self check</h1>
+<p>Play should read the lines in order with a human man voice for the mod and a human girl
+voice for the pwincess, with the current line highlighted. Pause must silence immediately.
+Resume must speak the paused line again from its start. Buttons out of order
+(Pause while idle, Resume while playing) must do nothing.</p>
+<button id="play">Play</button>
+<button id="pause">Pause</button>
+<button id="resume">Resume</button>
+<button id="stop">Stop</button>
+<div id="script"></div>
+<div id="log"></div>
+
+<script src="narrator.js"></script>
+<script>
+const LINES = [
+  { text: "*tips fedora* Greetings, m'lady. It is I, u/AlphaDaddy_Tendicus, senior moderator of this bedtime realm." },
+  { text: "Oh AlphaDaddy, you'we so bwave! Wead me the stowy about the thwee beaws!", speaker: "pwincess" },
+  { text: "Ackchyually, my pwincess, it is pronounced bears. Now hush, and pass daddy his chicken tendies." },
+  { text: "Hewe you go! Fweshly weheated, just how you wike them!", speaker: "pwincess" },
+  { text: "EDIT: thanks for the gold, kind stranger. Goodnight, sweet subreddit." },
+];
+
+const log = (msg) => { document.getElementById("log").textContent += msg + "\n"; };
+const scriptEl = document.getElementById("script");
+LINES.forEach((line) => {
+  const p = document.createElement("p");
+  p.textContent = (line.speaker === "pwincess" ? "👸 " : "🎩 ") + line.text;
+  scriptEl.appendChild(p);
+});
+
+const highlight = (i) => {
+  scriptEl.querySelectorAll("p").forEach((p, j) => p.classList.toggle("now", i === j));
+};
+
+document.getElementById("play").onclick = () => Narrator.play(LINES, {
+  onLine: (i) => { highlight(i); log("line " + i); },
+  onEnd: () => { highlight(-1); log("THE END"); },
+});
+document.getElementById("pause").onclick = () => { Narrator.pause(); log("pause clicked"); };
+document.getElementById("resume").onclick = () => { Narrator.resume(); log("resume clicked"); };
+document.getElementById("stop").onclick = () => { Narrator.stop(); highlight(-1); log("stop clicked"); };
+</script>
+</body>
+</html>
